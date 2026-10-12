@@ -5,5 +5,5 @@ if (( $# < 3 )); then
   exit 2
 fi
 model="$1"; input="$2"; output="$3"; shift 3
-python -m innerjev.infer --model "$model" --input "$input" --output "$output" \
+python -m sii_decision.infer --model "$model" --input "$input" --output "$output" \
   --gpus 1 --precision bf16 --batch-size 4 "$@"

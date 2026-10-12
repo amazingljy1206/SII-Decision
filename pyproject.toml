@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "innerjev"
+name = "sii-decision"
 version = "1.0.0"
-description = "InnerJev decision inference and same-size distribution distillation"
+description = "SII-Decision decision inference and same-size distribution distillation"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
 dependencies = [
@@ -23,4 +23,4 @@ quantization = ["bitsandbytes==0.47.0"]
 data = ["datasets>=4.0", "pyarrow>=21"]
 
 [tool.setuptools.packages.find]
-include = ["innerjev*"]
+include = ["sii_decision*"]

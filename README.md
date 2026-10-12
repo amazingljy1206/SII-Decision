@@ -1,6 +1,6 @@
-# InnerJev
+# SII-Decision
 
-**InnerJev-4B** and **InnerJev-27B** are decision models that score ordered user-supplied options.
+**SII-Decision-4B** and **SII-Decision-27B** are decision models that score ordered user-supplied options.
 This repository contains the training implementation, exact adaptation-layer lists,
 method configs, LoRA merge utility, and single-/dual-RTX-4090 inference scripts.
 Weights and training data are hosted separately on Hugging Face.
@@ -9,10 +9,10 @@ Weights and training data are hosted separately on Hugging Face.
 
 | Model | Method | Training questions | BF16 checkpoint score |
 |---|---|---:|---:|
-| [InnerJev-4B-LoRA](https://huggingface.co/jylin001206/InnerJev-4B-LoRA) | LoRA | 29,326 | 73.9648 |
-| [InnerJev-4B-Full](https://huggingface.co/jylin001206/InnerJev-4B-Full) | Full | 29,326 | 73.4694 |
-| [InnerJev-27B-LoRA](https://huggingface.co/jylin001206/InnerJev-27B-LoRA) | LoRA | 39,279 | 80.1517 |
-| [InnerJev-27B-Full](https://huggingface.co/jylin001206/InnerJev-27B-Full) | Full | 39,279 | 80.1734 |
+| [SII-Decision-4B-LoRA](https://huggingface.co/jylin001206/SII-Decision-4B-LoRA) | LoRA | 29,326 | 73.9648 |
+| [SII-Decision-4B-Full](https://huggingface.co/jylin001206/SII-Decision-4B-Full) | Full | 29,326 | 73.4694 |
+| [SII-Decision-27B-LoRA](https://huggingface.co/jylin001206/SII-Decision-27B-LoRA) | LoRA | 39,279 | 80.1517 |
+| [SII-Decision-27B-Full](https://huggingface.co/jylin001206/SII-Decision-27B-Full) | Full | 39,279 | 80.1734 |
 
 Scores use equal weight across the fixed 58-benchmark decision suite and refer to individual
 BF16 checkpoints. LoRA scores were measured with the adapter before BF16 merging;
@@ -37,10 +37,10 @@ MODEL can be a Hugging Face repository ID or a local weight folder. Both LoRA-de
 full-rank models use the same scripts because all released weights are standalone models.
 
 ```bash
-bash scripts/infer_4b_single_4090.sh jylin001206/InnerJev-4B-LoRA examples/decisions.jsonl out-4b.jsonl
-bash scripts/infer_4b_dual_4090.sh jylin001206/InnerJev-4B-Full examples/decisions.jsonl out-4b-dual.jsonl
-bash scripts/infer_27b_single_4090.sh jylin001206/InnerJev-27B-LoRA examples/decisions.jsonl out-27b.jsonl
-bash scripts/infer_27b_dual_4090.sh jylin001206/InnerJev-27B-Full examples/decisions.jsonl out-27b-dual.jsonl
+bash scripts/infer_4b_single_4090.sh jylin001206/SII-Decision-4B-LoRA examples/decisions.jsonl out-4b.jsonl
+bash scripts/infer_4b_dual_4090.sh jylin001206/SII-Decision-4B-Full examples/decisions.jsonl out-4b-dual.jsonl
+bash scripts/infer_27b_single_4090.sh jylin001206/SII-Decision-27B-LoRA examples/decisions.jsonl out-27b.jsonl
+bash scripts/infer_27b_dual_4090.sh jylin001206/SII-Decision-27B-Full examples/decisions.jsonl out-27b-dual.jsonl
 ```
 
 | Model / GPUs | Weight format | Parallelism |
@@ -73,7 +73,7 @@ The default input limit is 6,000 tokens; longer inputs are rejected without trun
 CPU prompt validation does not load weights:
 
 ```bash
-python -m innerjev.infer --model jylin001206/InnerJev-4B-LoRA   --input examples/decisions.jsonl --validate-only
+python -m sii_decision.infer --model jylin001206/SII-Decision-4B-LoRA   --input examples/decisions.jsonl --validate-only
 ```
 
 ## Training
@@ -126,7 +126,7 @@ with GPU kernels and the installed software environment.
 ### Merge a trained adapter
 
 ```bash
-python scripts/merge_lora.py --base Qwen/Qwen3.5-4B   --adapter outputs/4B-LoRA/checkpoint-276 --output outputs/InnerJev-4B-LoRA
+python scripts/merge_lora.py --base Qwen/Qwen3.5-4B   --adapter outputs/4B-LoRA/checkpoint-276 --output outputs/SII-Decision-4B-LoRA
 ```
 
 The merge supports CPU or CUDA and exports complete BF16 safetensors.
@@ -135,15 +135,15 @@ Release validation: [model/data integrity and inference checks](docs/VALIDATION.
 
 ## Data repositories
 
-- https://huggingface.co/datasets/jylin001206/InnerJev-4B-Training-Data
-- https://huggingface.co/datasets/jylin001206/InnerJev-27B-Training-Data
+- https://huggingface.co/datasets/jylin001206/SII-Decision-4B-Training-Data
+- https://huggingface.co/datasets/jylin001206/SII-Decision-27B-Training-Data
 
 Model/code license: Apache-2.0. Dataset source materials retain their upstream terms;
 see the dataset cards and inventories.
 
 ## Hosted API access
 
-We provide hosted **InnerJev-27B-Full** and **InnerJev-4B-Full** APIs powered by
+We provide hosted **SII-Decision-27B-Full** and **SII-Decision-4B-Full** APIs powered by
 vLLM in BF16 (without quantization), so you can try both models without deploying them locally.
 
 To request a personal API key, complete the
@@ -153,7 +153,7 @@ API key, endpoint URLs, and usage instructions.
 
 <p>
   <a href="https://sii-czxy.feishu.cn/share/base/form/shrcnq2Pf9zBkUe1jFiHBjgUaxe">
-    <img src="docs/assets/api-access-qr.png" alt="Scan to apply for InnerJev API access / 扫码申请 API key" width="280">
+    <img src="docs/assets/api-access-qr.png" alt="Scan to apply for SII-Decision API access / 扫码申请 API key" width="280">
   </a>
 </p>
 

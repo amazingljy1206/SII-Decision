@@ -1,7 +1,7 @@
 {
   "method": "full",
   "base_model": "Qwen/Qwen3.8-27B",
-  "dataset": "jylin001206/InnerJev-27B-Training-Data",
+  "dataset": "jylin001206/SII-Decision-27B-Training-Data",
   "training_rows": 39279,
   "seed": 42,
   "lr": 2e-06,

@@ -11,7 +11,7 @@ if [[ -e "$output" ]]; then
 fi
 parts="$(mktemp -d)"
 trap 'rm -rf "$parts"' EXIT
-torchrun --standalone --nnodes 1 --nproc_per_node 2 -m innerjev.infer \
+torchrun --standalone --nnodes 1 --nproc_per_node 2 -m sii_decision.infer \
   --model "$model" --input "$input" --output "$parts" --replicas 2 \
   --gpus 1 --precision bf16 --batch-size 4 "$@"
-python -m innerjev.merge_predictions --input "$input" --parts "$parts" --output "$output"
+python -m sii_decision.merge_predictions --input "$input" --parts "$parts" --output "$output"
