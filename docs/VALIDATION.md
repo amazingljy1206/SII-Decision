@@ -1,5 +1,12 @@
 # Release validation
 
+The full-weight loading and inference checks described below were completed on
+2026-10-02. The 2026-10-12 rename to SII-Decision preserved the model weights and
+dataset contents. Rename validation checked anonymous access to all six renamed
+Hugging Face repositories, unchanged weight/data hashes, complete dataset downloads,
+and prompt validation through all four new model IDs. Full-weight inference was
+not rerun for the rename.
+
 All four standalone model folders were loaded with the supplied decision engine on CPU.
 Each model completed three synthetic questions covering Choice, Noul and Score; the
 returned probability vectors were finite, correctly sized, and normalized.
