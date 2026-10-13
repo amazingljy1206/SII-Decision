@@ -153,7 +153,7 @@ API key, endpoint URLs, and usage instructions.
 
 <p>
   <a href="https://sii-czxy.feishu.cn/share/base/form/shrcnq2Pf9zBkUe1jFiHBjgUaxe">
-    <img src="docs/assets/api-access-qr.png" alt="Scan to apply for SII-Decision API access / 扫码申请 API key" width="280">
+    <img src="docs/assets/SII-Decision%20%E8%AE%BF%E9%97%AE%E7%94%B3%E8%AF%B7.png" alt="Scan to apply for SII-Decision API access / 扫码申请 API key" width="280">
   </a>
 </p>
 
